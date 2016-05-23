@@ -18,7 +18,7 @@ public:
 
 	
 
-	//static void setPropertyCount(int count);
+	static void setPropertyCount(int count);
 
 	std::string getStreetAddressOne() const;
 	std::string getStreetAddressTwo() const;
@@ -39,7 +39,7 @@ public:
 	void writePropertyInfo (std::ostream & output) const;
 private:
 	
-	//static int propertyCount;
+	static int propertyCount;
 	std::string streetAddress;
 	std::string addressLineTwo;
 	std::string city;
@@ -49,5 +49,4 @@ private:
 	int propertyID;
 	int tenantID;	
 };
-
 #endif

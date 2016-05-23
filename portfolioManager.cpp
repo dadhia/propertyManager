@@ -1,10 +1,11 @@
-
 #include "portfolioManager.h"
 #include <sstream>
 #include <string>
+#include <QMessageBox>
 
-PortfolioManager::PortfolioManager (Portfolio* portfolios)
+PortfolioManager::PortfolioManager (Portfolio* portfolio)
 {
+	this->portfolio = portfolio;
 	setWindowTitle("Longboat Developement: Portfolio Manager");
 	setStyleSheet("QPushButton:hover {color:red}");
 	
@@ -100,9 +101,11 @@ PortfolioManager::PortfolioManager (Portfolio* portfolios)
 
 	updateButtons = new QHBoxLayout();
 	updatePropertyButton = new QPushButton("Update Property");
+	connect(updatePropertyButton, SIGNAL(clicked()), this, SLOT(updateProperty()));
+	updateButtons->addWidget(updatePropertyButton);
+	
 	cancelUpdateButton = new QPushButton("Cancel");
 	connect(cancelUpdateButton, SIGNAL(clicked()), this, SLOT(cancelManage()));
-	updateButtons->addWidget(updatePropertyButton);
 	updateButtons->addWidget(cancelUpdateButton);
 	propertyLines->addLayout(updateButtons);
 
@@ -118,19 +121,61 @@ PortfolioManager::~PortfolioManager()
 
 void PortfolioManager::manageProperty()
 {
-	managePropertyButton->setText("Update Property");
+	updatePropertyButton->setText("Update Property");
+	managePropertyWidget->setWindowTitle("Update Property");
 	managePropertyWidget->show();
 };
 
+/**
+* Hides the managePropertyWidget from the user's view.
+*/
 void PortfolioManager::cancelManage()
 {
 	managePropertyWidget->hide();
 };
 
+/**
+* Clears the text in the managePropertyWidget and also changes the text of the window and button
+* to 'Add Property'.
+*/
 void PortfolioManager::addProperty()
 {
+	addingProperty = true;
+	lineOne->clear();
+	lineTwo->clear();
+	city->clear();
+	state->clear();
+	zip->clear();
 	updatePropertyButton->setText("Add Property");
+	managePropertyWidget->setWindowTitle("Add Property");
 	managePropertyWidget->show();
+};
+
+void PortfolioManager::updateProperty()
+{
+	if(addingProperty)
+	{
+		if(lineOne->text().isEmpty() || city->text().isEmpty() || state->text().isEmpty() ||
+			zip->text().isEmpty())
+		{
+			sendErrorMessage("Address Line One, City, State, and Zip Code are all required fields!");
+			return;
+		}
+		std::string _lineOne = lineOne->text().toStdString();
+		std::string _lineTwo = lineTwo->text().toStdString();
+		std::string _city = city->text().toStdString();
+		std::string _state = state->text().toStdString();
+		int _zip = zip->text().toInt();
+		Property newProperty (_lineOne, _lineTwo, _city, _state, _zip);
+		this->portfolio->addProperty(newProperty);
+		this->portfolio->updateListOfProperties(properties);
+		managePropertyWidget->hide();
+	}
+	else
+	{
+		//this is for updating a property and not adding a property
+		//worry about this later
+	}
 };
 
 void PortfolioManager::manageTenant()
@@ -141,4 +186,14 @@ void PortfolioManager::manageTenant()
 void PortfolioManager::addTenant()
 {
 
+};
+
+void PortfolioManager::sendErrorMessage(const std::string & message)
+{
+	QMessageBox errorMessage;
+	errorMessage.setWindowTitle("Portfolio Load Error");
+	errorMessage.setIcon(QMessageBox::Warning);
+	errorMessage.setText(QString::fromStdString(message));
+	errorMessage.exec();
+	return;
 };

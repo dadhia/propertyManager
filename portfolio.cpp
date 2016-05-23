@@ -81,3 +81,15 @@ void Portfolio::readFile(std::istream input)
 		tenants.insert(std::pair<int, Tenant>(newTenant.getID(), newTenant));
 	}
 };
+
+void Portfolio::updateListOfProperties(QListWidget* list)
+{
+	list->clear();
+	std::map <int, Property>::iterator it;
+	for (it = this->properties.begin(); it!= this->properties.end(); ++it)
+	{
+		std::string itemDescription = it->second.getStreetAddressOne() + " " + it->second.getCity() + 
+		" " + it->second.getState();
+		list->addItem(QString::fromStdString(itemDescription));
+	}
+};

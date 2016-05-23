@@ -8,6 +8,7 @@
 #include "tenant.h"
 #include "property.h"
 #include <map>
+#include <QListWidget>
 
 class Portfolio
 {
@@ -25,6 +26,8 @@ public:
 
 	const std::map<int, Property> & getProperties() const;
 	const std::map<int, Tenant> & getTenants () const;
+
+	void updateListOfProperties(QListWidget* list);
 
 private:
 	std::map<int, Property> properties;

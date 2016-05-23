@@ -21,6 +21,7 @@ private slots:
 	void manageProperty();
 	void cancelManage();
 	void addProperty();
+	void updateProperty();
 	void manageTenant();
 	void addTenant();
 
@@ -68,4 +69,9 @@ private:
 	QHBoxLayout* propertyManagement;
 	QHBoxLayout* tenantManagement;
 	QVBoxLayout* overallLayout;
+
+
+	bool addingProperty;
+	Portfolio* portfolio;
+	void sendErrorMessage(const std::string & message);
 };

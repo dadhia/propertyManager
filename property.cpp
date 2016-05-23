@@ -9,8 +9,8 @@ Property::Property(const std::string & addressOne, const std::string & addressTw
 streetAddress(addressOne), addressLineTwo(addressTwo), city(propertyCity), state(propertyState), zip(zipCode)
 {
 	tenantID = -1;
-	//this->propertyCount++;
-	//propertyID = this->propertyCount;
+	this->propertyCount++;
+	propertyID = this->propertyCount;
 };
 
 Property::Property(const std::string & addressOne, const std::string & addressTwo,
@@ -19,19 +19,19 @@ Property::Property(const std::string & addressOne, const std::string & addressTw
 streetAddress(addressOne), addressLineTwo(addressTwo), city(propertyCity), state(propertyState), zip(zipCode)
 {
 	tenantID = tenantIDNumber;
-	//if(propertyIDNumber > propertyCount)
-	//{
-	//	throw std::logic_error("Error: File corrupted. Error Code: 12");
-	//}
+	if(propertyIDNumber > propertyCount)
+	{
+		throw std::logic_error("Error: File corrupted. Error Code: 12");
+	}
 	propertyID = propertyIDNumber;
 };
 
 Property::~Property() {};
 
-//void Property::setPropertyCount (int count)
-//{
-//	propertyCount = count;
-//};
+void Property::setPropertyCount (int count)
+{
+	propertyCount = count;
+};
 
 
 //Getter Methods Below
