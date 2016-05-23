@@ -1,0 +1,7 @@
+numberOfProperties numberOfTenants
+Address line 1
+Address line 2
+City
+State
+Zip TenantID PropertyID
+FirstName LastName tenantID propertyID current active monthlyRent accountBalance
