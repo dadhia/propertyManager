@@ -24,6 +24,11 @@ private slots:
 	void updateProperty();
 	void manageTenant();
 	void addTenant();
+	void cancelTenantManage();
+	void updateTenant();
+	void save();
+	void saveAndQuit();
+	void quit();
 
 private:
 	QPushButton* managePropertyButton;
@@ -59,10 +64,10 @@ private:
 	QVBoxLayout* tenantButtons;
 
 	QListWidget* tenants;
+	QListWidget* properties;
 	QPushButton* manageTenantButton;
 	QPushButton* addTenantButton;
 	QPushButton* viewPaymentButton;
-	QListWidget* properties;
 	
 	
 
@@ -72,6 +77,39 @@ private:
 
 
 	bool addingProperty;
+	int selectedPropertyID;
+	bool addingTenant;
+	int selectedTenantID;
+
+
 	Portfolio* portfolio;
 	void sendErrorMessage(const std::string & message);
+	int areYouSure();
+
+	QWidget* manageTenantWidget;
+	QLabel* firstNameLabel;
+	QLineEdit* firstName;
+	QLabel* lastNameLabel;
+	QLineEdit* lastName;
+	QHBoxLayout* firstNameLayout;
+	QHBoxLayout* lastNameLayout;
+	QVBoxLayout* tenantLines;
+	QPushButton* manageLeasesButton;
+	QPushButton* updateTenantButton;
+	QPushButton* cancelUpdateTenantButton;
+	QHBoxLayout* updateTenantButtons;
+
+	QHBoxLayout* phoneNumberLayout;
+	QLabel* phoneNumberLabel;
+	QLineEdit* phoneNumber;
+
+	QLabel* saveAsLabel;
+	QLineEdit* filename;
+	QPushButton* saveButton;
+	QPushButton* saveAndQuitButton;
+	QPushButton* quitButton;
+	QHBoxLayout* mainButtonLayout;
+
+
+	bool allChangesSaved;
 };

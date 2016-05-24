@@ -22,7 +22,7 @@ static const uint qt_meta_data_PortfolioManager[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -36,6 +36,11 @@ static const uint qt_meta_data_PortfolioManager[] = {
       64,   17,   17,   17, 0x08,
       81,   17,   17,   17, 0x08,
       96,   17,   17,   17, 0x08,
+     108,   17,   17,   17, 0x08,
+     129,   17,   17,   17, 0x08,
+     144,   17,   17,   17, 0x08,
+     151,   17,   17,   17, 0x08,
+     165,   17,   17,   17, 0x08,
 
        0        // eod
 };
@@ -44,7 +49,9 @@ static const char qt_meta_stringdata_PortfolioManager[] = {
     "PortfolioManager\0\0manageProperty()\0"
     "cancelManage()\0addProperty()\0"
     "updateProperty()\0manageTenant()\0"
-    "addTenant()\0"
+    "addTenant()\0cancelTenantManage()\0"
+    "updateTenant()\0save()\0saveAndQuit()\0"
+    "quit()\0"
 };
 
 void PortfolioManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -59,6 +66,11 @@ void PortfolioManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 3: _t->updateProperty(); break;
         case 4: _t->manageTenant(); break;
         case 5: _t->addTenant(); break;
+        case 6: _t->cancelTenantManage(); break;
+        case 7: _t->updateTenant(); break;
+        case 8: _t->save(); break;
+        case 9: _t->saveAndQuit(); break;
+        case 10: _t->quit(); break;
         default: ;
         }
     }
@@ -97,9 +109,9 @@ int PortfolioManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 11;
     }
     return _id;
 }

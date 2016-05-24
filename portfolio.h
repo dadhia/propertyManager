@@ -16,18 +16,19 @@ public:
 	Portfolio();
 	~Portfolio();
 
-	void readFile(std::istream input);
-	void savePortfolio(std::ofstream & output) const;
+	void readFile(std::istream & input);
+	void savePortfolio(std::ostream & output);
 
 	void addTenant(Tenant & newTenant);
 	void addProperty(Property & newProperty);
 
 	void setName(const std::string & filename);
-
-	const std::map<int, Property> & getProperties() const;
-	const std::map<int, Tenant> & getTenants () const;
+	std::string getName() const;
 
 	void updateListOfProperties(QListWidget* list);
+	Property* getSingleProperty (int ID);
+	void updateListOfTenants(QListWidget* list);
+	Tenant* getSingleTenant(int ID);
 
 private:
 	std::map<int, Property> properties;

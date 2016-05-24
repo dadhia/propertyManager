@@ -26,10 +26,8 @@ private:
 	QPushButton* createButton;
 	QPushButton* quitButton;
 	QLineEdit* filename;
-	QLineEdit* filename2;
 	QVBoxLayout* layout;
 	QLabel* userInstructions;
-	QLabel* userInstructions2;
 	PortfolioManager* portfolioManager;
 
 	Portfolio* portfolio;

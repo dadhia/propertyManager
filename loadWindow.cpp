@@ -20,13 +20,6 @@ LoadWindow::LoadWindow ()
 	connect(loadButton, SIGNAL(clicked()), this, SLOT(loadPortfolio()));
 	layout->addWidget(loadButton);
 
-	userInstructions2 = new QLabel("Enter a filename for a new portfolio:");
-	layout->addWidget(userInstructions2);
-
-	filename2 = new QLineEdit();
-	connect(filename2, SIGNAL(returnPressed()), this, SLOT(create()));
-	layout->addWidget(filename2);
-
 	createButton = new QPushButton("Create Portfolio");
 	connect(createButton, SIGNAL(clicked()), this, SLOT(create()));
 	layout->addWidget(createButton);
@@ -44,8 +37,6 @@ LoadWindow::~LoadWindow()
 {
 	delete userInstructions;
 	delete filename;
-	delete filename2;
-	delete userInstructions2;
 	delete createButton;
 	delete loadButton;
 	delete quitButton;
@@ -68,17 +59,18 @@ void LoadWindow::loadPortfolio ()
 		sendErrorMessage(nameOfFile);
 		return;
 	}
-
+	portfolio->setName(nameOfFile);
+	portfolio->readFile(inFile);
 	portfolioManager = new PortfolioManager(portfolio);
+	
 	portfolioManager->show();
 	this->hide();
 };
 
 void LoadWindow::create()
 {
-	if(filename2->text().isEmpty())
-		return;
 	portfolioManager = new PortfolioManager(portfolio);
+	portfolio->setName("");
 	this->hide();
 	portfolioManager->show();
 };

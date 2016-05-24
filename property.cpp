@@ -104,14 +104,41 @@ void Property::assignTenant(int ID)
 	tenantID = ID;
 };
 
-void Property::writePropertyInfo (std::ostream & output) const
+void Property::writePropertyInfo (std::ostream & output)
 {
 	output << streetAddress << std::endl;
-	output << addressLineTwo << std::endl;
+	if(addressLineTwo == "")
+	{
+		output << "N/A" << std::endl;
+	}
+	else
+	{
+		output << addressLineTwo << std::endl;
+	}
 	output << city << std::endl;
 	output << state << std::endl;
 	std::stringstream ss;
 	ss << zip << " " << tenantID << " " << propertyID;
 	std::string lastLine = ss.str();
-	output << ss << std::endl;
+	output << lastLine << std::endl;
+};
+
+Property readPropertyInfo(std::istream & input)
+{
+	std::string addressOne, addressTwo, city, state, otherInfo;
+	int zip, tenantNumber, propertyNumber;
+	std::stringstream ss;
+	getline(input, addressOne);
+	getline(input, addressTwo);
+	getline(input, city);
+	getline(input, state);
+	getline(input, otherInfo);
+	ss << otherInfo;
+	ss >> zip >> tenantNumber >> propertyNumber;
+	if(addressTwo == "N/A")
+	{
+		addressTwo = "";
+	};
+	Property newProperty(addressOne, addressTwo, city, state, zip, tenantNumber, propertyNumber);
+	return newProperty;
 };

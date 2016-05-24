@@ -7,13 +7,22 @@
 class Tenant
 {
 public:
-	Tenant(const std::string & firstName, const std::string & lastName, double rent = 0, double balance =0 );
-	Tenant(const std::string & first, const std::string & last, int tenantIDNumber, int propertyIDNumber,
-	bool isCurrent, bool isActive, double rent=0, double balance=0);
 
+	Tenant(const std::string & first, const std::string & last, const std::string & phone);
+	Tenant(const std::string & first, const std::string & last, const std::string & phone,
+			int ID, int property, bool isCurrent, bool isActive, double rent, double balance);
 	~Tenant();
 
-	//static void setTenantCount(int count);
+	static void setTenantCount(int count);
+
+
+	std::string getFirstName();
+	std::string getLastName();
+	std::string getPhoneNumber();
+
+	void setFirstName(const std::string & newFirstName);
+	void setLastName(const std::string & newLastName);
+	void setPhoneNumber(const std::string & newPhoneNumber);
 
 	void assignToProperty(int propertyID);
 
@@ -34,20 +43,19 @@ public:
 	void writeTenantInfo(std::ostream & output);
 
 private:
-	//static int tenantCount;
+	static int tenantCount;
 	std::string firstName;
 	std::string lastName;
+	std::string phoneNumber;
 	int tenantID;
 	int propertyID;
 	bool current;
 	bool active;
-
-
 	double monthlyRent;
 	double accountBalance;
-	tm* moveIn;
-	tm* moveOut;
-};
 
-Tenant readTenantInfo(std::ifstream & input);
+	//worry about this later
+	//tm* moveIn;
+	//tm* moveOut;
+};
 #endif

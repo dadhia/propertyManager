@@ -1,0 +1,13 @@
+2 2
+5102 E Longboat Blvd
+N/A
+Tampa
+FL
+33615 -1 1
+1101 E Cumberland Ave
+N/A
+Tampa
+FL
+33602 -1 2
+Avatar Insurance 8135140333 1 -1 0 0 0 0
+Devan Adhia 8137870994 2 -1 0 0 0 0

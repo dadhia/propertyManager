@@ -36,7 +36,7 @@ public:
 	void setZip(int newZip);
 	void assignTenant(int ID);
 	
-	void writePropertyInfo (std::ostream & output) const;
+	void writePropertyInfo (std::ostream & output);
 private:
 	
 	static int propertyCount;
