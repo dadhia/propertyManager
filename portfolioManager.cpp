@@ -343,7 +343,7 @@ void PortfolioManager::updateTenant()
 		selectedTenant->setPhoneNumber(phone);
 	}
 	this->portfolio->updateListOfTenants(tenants);
-	allChangesSaved = true;
+	allChangesSaved = false;
 	manageTenantWidget->hide();
 }
 
@@ -365,12 +365,19 @@ void PortfolioManager::quit ()
 {
 	if (!allChangesSaved)
 	{
-		int x = areYouSure();
-		if(x = QMessageBox::AcceptRole)
+		int choice = areYouSure();
+		if(choice == QMessageBox::AcceptRole)
 		{
 			this->save();
 		}
-		else if
+		else if (choice == QMessageBox::RejectRole)
+		{
+			return;
+		}
+		else
+		{
+			QApplication::exit();
+		}
 	}
 	else
 	{
@@ -393,6 +400,6 @@ int PortfolioManager::areYouSure()
 	QMessageBox errorMessage;
 	errorMessage.setText("Not all changes to your portfolio have been saved.  Do you want to quit without saving?");
 	errorMessage.setStandardButtons(QMessageBox::Cancel | QMessageBox::Save | QMessageBox::Discard);
-	errorMessage.setDefaultButton(QMessageBoc::Save);
+	errorMessage.setDefaultButton(QMessageBox::Save);
 	return errorMessage.exec();
 };
